@@ -1,3 +1,4 @@
+---
 name: Personal Build and Push
 on:
   push:
@@ -7,15 +8,14 @@ on:
 
 jobs:
   build_n_push:
-    if: github.repository != 'netbirdio/dashboard'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
 
       - name: setup-node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: 'lts/*'
           cache: 'npm'
 
       - name: Install dependencies
@@ -49,6 +49,8 @@ jobs:
         name: Docker build and push
         uses: docker/build-push-action@v3
         with:
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
           context: .
           file: docker/Dockerfile
           push: ${{ github.event_name != 'pull_request' }}
