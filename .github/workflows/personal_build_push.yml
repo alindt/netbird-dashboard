@@ -57,3 +57,14 @@ jobs:
           platforms: linux/amd64,linux/arm64,linux/arm
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+      -
+        name: Delete untagged GHCR images after push
+        if: github.event_name != 'pull_request'
+        uses: Chizkiyahu/delete-untagged-ghcr-action@v6
+        continue-on-error: true
+        with:
+          token: ${{ secrets.PAT_GHCR_DELETE_IMAGES }}
+          untagged_only: true
+          except_untagged_multiplatform: true
+          with_sigs: true
+          owner_type: 'user'
