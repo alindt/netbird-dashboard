@@ -3,7 +3,11 @@ name: Personal Build and Push
 on:
   push:
     branches:
+      - "main"
       - "feature/**"
+      - "feature-wip/**"
+      - "fix/**"
+      - "fix-wip/**"
   pull_request:
 
 jobs:
@@ -68,3 +72,4 @@ jobs:
           except_untagged_multiplatform: true
           with_sigs: true
           owner_type: 'user'
+
