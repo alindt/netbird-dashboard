@@ -72,7 +72,7 @@
     "react-responsive": "^9.0.2",
     "react-virtuoso": "^4.9.0",
     "swr": "^2.2.4",
-    "tailwind-merge": "^1.14.0",
+    "tailwind-merge": "^3.0.0",
     "tailwindcss-animate": "^1.0.7",
     "typescript": "^5"
   },
